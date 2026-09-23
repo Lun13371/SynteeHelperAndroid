@@ -40,6 +40,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -454,6 +455,7 @@ private fun ModelRadioRow(
 private fun AboutSection(viewModel: SettingsViewModel, modifier: Modifier = Modifier) {
     var apiOverride by remember { mutableStateOf("") }
     var webOverride by remember { mutableStateOf("") }
+    val appSettings by viewModel.appSettings.collectAsStateWithLifecycle()
 
     SubScreen(
         title = stringResource(R.string.settings_section_about),
@@ -464,6 +466,33 @@ private fun AboutSection(viewModel: SettingsViewModel, modifier: Modifier = Modi
             AboutRow(stringResource(R.string.about_version), viewModel.appInfo.versionName)
             AboutRow(stringResource(R.string.about_api_url), viewModel.effectiveApiUrl())
             AboutRow(stringResource(R.string.about_web_url), viewModel.effectiveWebUrl())
+        }
+
+        Spacer(Modifier.height(20.dp))
+
+        // ── Прод-режим: все запросы на https://syntee.fun ──
+        SynteeCard(modifier = Modifier.fillMaxWidth()) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = stringResource(R.string.about_production_mode),
+                        style = MaterialTheme.typography.titleSmall,
+                    )
+                    Text(
+                        text = stringResource(R.string.about_production_mode_hint),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Spacer(Modifier.width(12.dp))
+                Switch(
+                    checked = appSettings.productionMode,
+                    onCheckedChange = viewModel::setProductionMode,
+                )
+            }
         }
 
         if (viewModel.appInfo.isDebug) {

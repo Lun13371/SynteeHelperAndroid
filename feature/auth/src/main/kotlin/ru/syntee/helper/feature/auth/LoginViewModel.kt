@@ -69,6 +69,10 @@ class LoginViewModel @Inject constructor(
             val intent = CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .build()
+            // ViewModel держит @ApplicationContext: startActivity из
+            // application-context требует NEW_TASK (браузер открывается
+            // отдельной задачей поверх приложения).
+            intent.intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.launchUrl(context, urlProvider.loginUrl.toUri())
         }.onFailure { t ->
             _uiState.value = LoginUiState.Error(

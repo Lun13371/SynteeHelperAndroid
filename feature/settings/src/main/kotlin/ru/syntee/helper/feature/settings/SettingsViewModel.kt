@@ -92,6 +92,11 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch { settings.setUrlOverrides(api, web) }
     }
 
+    /** Переключатель прод-режима: все запросы → https://syntee.fun. */
+    fun setProductionMode(enabled: Boolean) {
+        viewModelScope.launch { settings.setProductionMode(enabled) }
+    }
+
     fun effectiveApiUrl(): String = urlProvider.effectiveApiUrl
     fun effectiveWebUrl(): String = urlProvider.effectiveWebUrl
 }

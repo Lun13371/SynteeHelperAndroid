@@ -28,10 +28,15 @@ class AppViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.Eagerly, AuthState.Loading)
 
     init {
-        // URL-override (dev-режим: LAN IP ПК для реального устройства).
+        // Прод-режим + URL-override (dev: LAN IP ПК для реального устройства)
+        // применяются к сетевому слою немедленно при изменении настроек.
         viewModelScope.launch {
             settings.settingsFlow.collect { s ->
-                urlProvider.applyOverrides(s.apiBaseUrlOverride, s.webBaseUrlOverride)
+                urlProvider.applySettings(
+                    production = s.productionMode,
+                    api = s.apiBaseUrlOverride,
+                    web = s.webBaseUrlOverride,
+                )
             }
         }
     }

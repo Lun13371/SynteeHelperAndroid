@@ -27,9 +27,9 @@ android {
 
     buildTypes {
         debug {
-            // Dev-гейтвей на машине разработчика (10.0.2.2 = localhost хоста в эмуляторе).
-            buildConfigField("String", "SYNTEE_API_URL", "\"http://10.0.2.2:8000\"")
-            buildConfigField("String", "SYNTEE_WEB_URL", "\"http://10.0.2.2:3000\"")
+            // Debug тоже ходит на ПРОД syntee.fun (юзер тестирует прод-гейтвей
+            // и на эмуляторе, и на телефоне). Локальный dev-гейтвей при
+            // необходимости включается в настройках: О приложении → dev URL.
         }
         release {
             // Стадия 06: включить R8 (optimization { enable = true }) + релизный keystore.

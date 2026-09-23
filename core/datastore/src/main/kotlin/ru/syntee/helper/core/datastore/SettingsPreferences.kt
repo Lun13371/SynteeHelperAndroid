@@ -24,6 +24,8 @@ data class AppSettings(
     val defaultModelId: String? = null,
     val temperature: Double = 0.7,
     val maxTokens: Int = 16384,
+    /** Прод-режим: все запросы идут на https://syntee.fun вместо dev-гейтвея. */
+    val productionMode: Boolean = false,
     val apiBaseUrlOverride: String? = null,
     val webBaseUrlOverride: String? = null,
     val recentModelIds: List<String> = emptyList(),
@@ -48,6 +50,7 @@ class SettingsPreferences @Inject constructor(
         val DEFAULT_MODEL = stringPreferencesKey("default_model")
         val TEMPERATURE = doublePreferencesKey("temperature")
         val MAX_TOKENS = stringPreferencesKey("max_tokens_int")
+        val PRODUCTION_MODE = booleanPreferencesKey("production_mode")
         val API_URL_OVERRIDE = stringPreferencesKey("api_url_override")
         val WEB_URL_OVERRIDE = stringPreferencesKey("web_url_override")
         val RECENT_MODELS = stringSetPreferencesKey("recent_models")
@@ -61,6 +64,7 @@ class SettingsPreferences @Inject constructor(
             defaultModelId = prefs[Keys.DEFAULT_MODEL],
             temperature = prefs[Keys.TEMPERATURE] ?: 0.7,
             maxTokens = prefs[Keys.MAX_TOKENS]?.toIntOrNull() ?: 16384,
+            productionMode = prefs[Keys.PRODUCTION_MODE] ?: false,
             apiBaseUrlOverride = prefs[Keys.API_URL_OVERRIDE]?.takeIf { it.isNotBlank() },
             webBaseUrlOverride = prefs[Keys.WEB_URL_OVERRIDE]?.takeIf { it.isNotBlank() },
             recentModelIds = (prefs[Keys.RECENT_MODELS] ?: emptySet()).toList(),
@@ -74,6 +78,10 @@ class SettingsPreferences @Inject constructor(
 
     suspend fun setGuestMode(enabled: Boolean) {
         context.settingsDataStore.edit { it[Keys.IS_GUEST] = enabled }
+    }
+
+    suspend fun setProductionMode(enabled: Boolean) {
+        context.settingsDataStore.edit { it[Keys.PRODUCTION_MODE] = enabled }
     }
 
     suspend fun setDefaultModel(modelId: String?) {

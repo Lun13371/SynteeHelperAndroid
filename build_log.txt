@@ -1,281 +1,281 @@
 Reusing configuration cache.
-> Task :core:common:generateDebugAssets UP-TO-DATE
-> Task :core:database:preBuild UP-TO-DATE
 > Task :app:preBuild UP-TO-DATE
-> Task :core:designsystem:preBuild UP-TO-DATE
-> Task :core:network:preBuild UP-TO-DATE
-> Task :feature:auth:preBuild UP-TO-DATE
-> Task :app:generateDebugAssets UP-TO-DATE
-> Task :core:data:preBuild UP-TO-DATE
-> Task :feature:chat:preBuild UP-TO-DATE
-> Task :feature:settings:preBuild UP-TO-DATE
-> Task :core:common:preBuild UP-TO-DATE
 > Task :core:datastore:preBuild UP-TO-DATE
+> Task :core:network:preBuild UP-TO-DATE
+> Task :feature:chat:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :core:database:preBuild UP-TO-DATE
+> Task :core:datastore:preDebugBuild UP-TO-DATE
+> Task :core:common:generateDebugAssets UP-TO-DATE
+> Task :core:common:preBuild UP-TO-DATE
+> Task :core:designsystem:preBuild UP-TO-DATE
+> Task :core:data:preBuild UP-TO-DATE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :feature:auth:preBuild UP-TO-DATE
+> Task :core:network:preDebugBuild UP-TO-DATE
+> Task :core:designsystem:preDebugBuild UP-TO-DATE
+> Task :feature:auth:preDebugBuild UP-TO-DATE
+> Task :core:common:preDebugBuild UP-TO-DATE
+> Task :feature:settings:preBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
 > Task :core:database:preDebugBuild UP-TO-DATE
 > Task :core:data:preDebugBuild UP-TO-DATE
-> Task :core:common:preDebugBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
-> Task :feature:settings:preDebugBuild UP-TO-DATE
-> Task :core:designsystem:preDebugBuild UP-TO-DATE
-> Task :core:network:preDebugBuild UP-TO-DATE
-> Task :feature:auth:preDebugBuild UP-TO-DATE
+> Task :core:datastore:processDebugNavigationResources UP-TO-DATE
 > Task :feature:chat:preDebugBuild UP-TO-DATE
-> Task :core:datastore:preDebugBuild UP-TO-DATE
-> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
-> Task :core:network:processDebugNavigationResources UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
 > Task :app:generateDebugBuildConfig UP-TO-DATE
-> Task :feature:auth:processDebugNavigationResources UP-TO-DATE
-> Task :core:designsystem:processDebugNavigationResources UP-TO-DATE
 > Task :core:common:processDebugNavigationResources UP-TO-DATE
+> Task :feature:settings:preDebugBuild UP-TO-DATE
+> Task :core:network:processDebugNavigationResources UP-TO-DATE
+> Task :core:designsystem:processDebugNavigationResources UP-TO-DATE
+> Task :feature:auth:processDebugNavigationResources UP-TO-DATE
 > Task :core:database:processDebugNavigationResources UP-TO-DATE
-> Task :core:common:generateDebugResources UP-TO-DATE
 > Task :feature:chat:processDebugNavigationResources UP-TO-DATE
-> Task :feature:settings:processDebugNavigationResources UP-TO-DATE
-> Task :core:data:processDebugNavigationResources UP-TO-DATE
-> Task :core:common:javaPreCompileDebug UP-TO-DATE
 > Task :core:data:generateDebugResources UP-TO-DATE
+> Task :core:common:javaPreCompileDebug UP-TO-DATE
+> Task :core:data:processDebugNavigationResources UP-TO-DATE
 > Task :core:datastore:generateDebugResources UP-TO-DATE
 > Task :core:network:generateDebugResources UP-TO-DATE
 > Task :core:database:javaPreCompileDebug UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :core:common:generateDebugResources UP-TO-DATE
+> Task :core:datastore:javaPreCompileDebug UP-TO-DATE
 > Task :core:database:generateDebugResources UP-TO-DATE
-> Task :core:datastore:processDebugNavigationResources UP-TO-DATE
+> Task :core:network:javaPreCompileDebug UP-TO-DATE
 > Task :core:designsystem:generateDebugResources UP-TO-DATE
 > Task :core:designsystem:javaPreCompileDebug UP-TO-DATE
-> Task :core:datastore:javaPreCompileDebug UP-TO-DATE
-> Task :core:data:javaPreCompileDebug UP-TO-DATE
-> Task :core:network:javaPreCompileDebug UP-TO-DATE
-> Task :core:common:packageDebugResources UP-TO-DATE
-> Task :core:datastore:packageDebugResources UP-TO-DATE
-> Task :core:network:packageDebugResources UP-TO-DATE
-> Task :core:common:parseDebugLocalResources UP-TO-DATE
-> Task :feature:chat:generateDebugResources UP-TO-DATE
-> Task :core:datastore:parseDebugLocalResources UP-TO-DATE
 > Task :feature:auth:generateDebugResources UP-TO-DATE
-> Task :core:network:parseDebugLocalResources UP-TO-DATE
-> Task :feature:auth:javaPreCompileDebug UP-TO-DATE
-> Task :core:designsystem:packageDebugResources UP-TO-DATE
+> Task :feature:chat:generateDebugResources UP-TO-DATE
 > Task :feature:chat:javaPreCompileDebug UP-TO-DATE
-> Task :core:data:packageDebugResources UP-TO-DATE
-> Task :core:database:packageDebugResources UP-TO-DATE
-> Task :core:common:generateDebugRFile UP-TO-DATE
-> Task :core:database:parseDebugLocalResources UP-TO-DATE
-> Task :feature:settings:generateDebugResources UP-TO-DATE
+> Task :core:designsystem:packageDebugResources UP-TO-DATE
+> Task :feature:auth:packageDebugResources UP-TO-DATE
 > Task :core:designsystem:parseDebugLocalResources UP-TO-DATE
-> Task :core:datastore:generateDebugRFile UP-TO-DATE
+> Task :feature:auth:parseDebugLocalResources UP-TO-DATE
+> Task :core:data:javaPreCompileDebug UP-TO-DATE
+> Task :core:network:packageDebugResources UP-TO-DATE
+> Task :feature:chat:packageDebugResources UP-TO-DATE
+> Task :core:designsystem:generateDebugRFile UP-TO-DATE
 > Task :feature:settings:javaPreCompileDebug UP-TO-DATE
-> Task :core:data:parseDebugLocalResources UP-TO-DATE
+> Task :core:network:parseDebugLocalResources UP-TO-DATE
+> Task :core:datastore:packageDebugResources UP-TO-DATE
+> Task :feature:chat:parseDebugLocalResources UP-TO-DATE
+> Task :core:database:packageDebugResources UP-TO-DATE
 > Task :app:javaPreCompileDebug UP-TO-DATE
-> Task :core:network:generateDebugRFile UP-TO-DATE
+> Task :core:datastore:parseDebugLocalResources UP-TO-DATE
+> Task :core:common:packageDebugResources UP-TO-DATE
 > Task :core:common:mergeDebugAssets UP-TO-DATE
+> Task :feature:settings:processDebugNavigationResources
+> Task :feature:auth:generateDebugRFile UP-TO-DATE
 > Task :core:data:generateDebugAssets UP-TO-DATE
 > Task :core:database:generateDebugAssets UP-TO-DATE
-> Task :core:database:generateDebugRFile UP-TO-DATE
-> Task :feature:auth:packageDebugResources UP-TO-DATE
-> Task :core:datastore:generateDebugAssets UP-TO-DATE
-> Task :core:database:compileDebugKotlin NO-SOURCE
-> Task :core:database:mergeDebugAssets UP-TO-DATE
-> Task :feature:auth:parseDebugLocalResources UP-TO-DATE
-> Task :core:data:mergeDebugAssets UP-TO-DATE
-> Task :core:datastore:mergeDebugAssets UP-TO-DATE
-> Task :feature:chat:packageDebugResources UP-TO-DATE
-> Task :core:designsystem:generateDebugAssets UP-TO-DATE
-> Task :core:designsystem:generateDebugRFile UP-TO-DATE
-> Task :core:data:generateDebugRFile UP-TO-DATE
-> Task :feature:settings:packageDebugResources UP-TO-DATE
-> Task :feature:settings:parseDebugLocalResources UP-TO-DATE
-> Task :core:designsystem:mergeDebugAssets UP-TO-DATE
-> Task :core:network:generateDebugAssets UP-TO-DATE
-> Task :core:database:compileDebugJavaWithJavac NO-SOURCE
-> Task :feature:auth:generateDebugAssets UP-TO-DATE
-> Task :feature:chat:parseDebugLocalResources UP-TO-DATE
-> Task :feature:chat:generateDebugAssets UP-TO-DATE
-> Task :feature:auth:generateDebugRFile UP-TO-DATE
-> Task :core:network:mergeDebugAssets UP-TO-DATE
-> Task :core:database:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :feature:settings:generateDebugAssets UP-TO-DATE
-> Task :core:database:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :feature:auth:mergeDebugAssets UP-TO-DATE
-> Task :feature:chat:mergeDebugAssets UP-TO-DATE
-> Task :feature:settings:generateDebugRFile UP-TO-DATE
-> Task :app:generateDebugGlobalSynthetics UP-TO-DATE
-> Task :feature:settings:mergeDebugAssets UP-TO-DATE
-> Task :core:database:processDebugJavaRes NO-SOURCE
-> Task :core:database:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :feature:auth:javaPreCompileDebug UP-TO-DATE
+> Task :core:common:parseDebugLocalResources UP-TO-DATE
+> Task :core:database:parseDebugLocalResources UP-TO-DATE
+> Task :core:data:packageDebugResources UP-TO-DATE
+> Task :core:network:generateDebugRFile UP-TO-DATE
 > Task :feature:chat:generateDebugRFile UP-TO-DATE
+> Task :core:designsystem:generateDebugAssets UP-TO-DATE
+> Task :core:data:mergeDebugAssets UP-TO-DATE
+> Task :core:datastore:generateDebugRFile UP-TO-DATE
+> Task :feature:auth:generateDebugAssets UP-TO-DATE
+> Task :core:database:mergeDebugAssets UP-TO-DATE
+> Task :feature:chat:generateDebugAssets UP-TO-DATE
+> Task :core:datastore:generateDebugAssets UP-TO-DATE
+> Task :core:designsystem:mergeDebugAssets UP-TO-DATE
+> Task :feature:settings:generateDebugAssets UP-TO-DATE
+> Task :feature:chat:mergeDebugAssets UP-TO-DATE
+> Task :core:common:generateDebugRFile UP-TO-DATE
+> Task :core:network:generateDebugAssets UP-TO-DATE
+> Task :core:database:generateDebugRFile UP-TO-DATE
+> Task :feature:settings:mergeDebugAssets UP-TO-DATE
+> Task :core:network:mergeDebugAssets UP-TO-DATE
+> Task :core:data:parseDebugLocalResources UP-TO-DATE
+> Task :app:generateDebugGlobalSynthetics UP-TO-DATE
+> Task :core:datastore:mergeDebugAssets UP-TO-DATE
+> Task :feature:auth:mergeDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :core:database:compileDebugKotlin NO-SOURCE
 > Task :core:common:writeDebugAarMetadata UP-TO-DATE
+> Task :core:database:compileDebugJavaWithJavac NO-SOURCE
 > Task :core:data:writeDebugAarMetadata UP-TO-DATE
 > Task :core:database:writeDebugAarMetadata UP-TO-DATE
-> Task :app:desugarDebugFileDependencies UP-TO-DATE
-> Task :app:generateDebugResources
+> Task :core:datastore:writeDebugAarMetadata UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
 > Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :core:database:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:database:processDebugJavaRes NO-SOURCE
+> Task :core:data:generateDebugRFile UP-TO-DATE
+> Task :core:database:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:database:bundleLibRuntimeToDirDebug UP-TO-DATE
 > Task :core:designsystem:writeDebugAarMetadata UP-TO-DATE
 > Task :core:network:writeDebugAarMetadata UP-TO-DATE
-> Task :core:datastore:writeDebugAarMetadata UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
 > Task :feature:chat:writeDebugAarMetadata UP-TO-DATE
-> Task :app:mergeDebugAssets UP-TO-DATE
-> Task :feature:auth:writeDebugAarMetadata UP-TO-DATE
-> Task :core:common:compileDebugKotlin UP-TO-DATE
 > Task :feature:settings:writeDebugAarMetadata UP-TO-DATE
-> Task :app:compressDebugAssets UP-TO-DATE
+> Task :feature:auth:writeDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
 > Task :app:extractDeepLinksDebug UP-TO-DATE
-> Task :core:common:extractDeepLinksDebug UP-TO-DATE
-> Task :app:mapDebugSourceSetPaths
-> Task :core:data:extractDeepLinksDebug UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
 > Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
-> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:settings:generateDebugResources
+> Task :core:common:extractDeepLinksDebug UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :core:data:extractDeepLinksDebug UP-TO-DATE
 > Task :core:database:extractDeepLinksDebug UP-TO-DATE
-> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:data:processDebugManifest UP-TO-DATE
-> Task :core:common:processDebugJavaRes UP-TO-DATE
+> Task :app:generateDebugRFile UP-TO-DATE
 > Task :app:mergeExtDexDebug UP-TO-DATE
-> Task :core:database:processDebugManifest UP-TO-DATE
-> Task :core:common:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :core:common:processDebugManifest UP-TO-DATE
-> Task :core:common:bundleLibRuntimeToDirDebug UP-TO-DATE
 > Task :core:datastore:extractDeepLinksDebug UP-TO-DATE
-> Task :core:designsystem:extractDeepLinksDebug UP-TO-DATE
-> Task :app:checkDebugAarMetadata UP-TO-DATE
-> Task :core:datastore:processDebugManifest UP-TO-DATE
 > Task :core:network:extractDeepLinksDebug UP-TO-DATE
-> Task :core:network:processDebugManifest UP-TO-DATE
+> Task :core:designsystem:extractDeepLinksDebug UP-TO-DATE
+> Task :core:common:processDebugManifest UP-TO-DATE
 > Task :feature:auth:extractDeepLinksDebug UP-TO-DATE
+> Task :core:database:processDebugManifest UP-TO-DATE
+> Task :core:data:processDebugManifest UP-TO-DATE
+> Task :core:common:compileDebugKotlin UP-TO-DATE
+> Task :core:datastore:processDebugManifest UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
 > Task :feature:chat:extractDeepLinksDebug UP-TO-DATE
-> Task :feature:auth:processDebugManifest UP-TO-DATE
-> Task :feature:chat:processDebugManifest UP-TO-DATE
-> Task :core:common:mapDebugSourceSetPaths UP-TO-DATE
-> Task :feature:settings:extractDeepLinksDebug UP-TO-DATE
-> Task :core:common:compileDebugLibraryResources UP-TO-DATE
-> Task :core:datastore:mapDebugSourceSetPaths UP-TO-DATE
-> Task :core:designsystem:mapDebugSourceSetPaths UP-TO-DATE
-> Task :core:data:mapDebugSourceSetPaths UP-TO-DATE
-> Task :core:datastore:compileDebugLibraryResources UP-TO-DATE
-> Task :core:designsystem:compileDebugLibraryResources UP-TO-DATE
-> Task :core:database:mapDebugSourceSetPaths UP-TO-DATE
-> Task :core:network:mapDebugSourceSetPaths UP-TO-DATE
-> Task :core:data:compileDebugLibraryResources UP-TO-DATE
-> Task :feature:auth:mapDebugSourceSetPaths UP-TO-DATE
-> Task :feature:chat:mapDebugSourceSetPaths UP-TO-DATE
-> Task :core:database:compileDebugLibraryResources UP-TO-DATE
-> Task :feature:settings:processDebugManifest UP-TO-DATE
-> Task :core:network:compileDebugLibraryResources UP-TO-DATE
-> Task :feature:settings:mapDebugSourceSetPaths UP-TO-DATE
-> Task :feature:auth:compileDebugLibraryResources UP-TO-DATE
-> Task :app:mergeDebugJniLibFolders UP-TO-DATE
-> Task :feature:chat:compileDebugLibraryResources UP-TO-DATE
-> Task :core:datastore:kspDebugKotlin UP-TO-DATE
 > Task :core:designsystem:processDebugManifest UP-TO-DATE
+> Task :feature:settings:extractDeepLinksDebug UP-TO-DATE
+> Task :core:common:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:common:mapDebugSourceSetPaths UP-TO-DATE
+> Task :core:network:processDebugManifest UP-TO-DATE
+> Task :core:data:mapDebugSourceSetPaths UP-TO-DATE
+> Task :core:database:mapDebugSourceSetPaths UP-TO-DATE
+> Task :core:datastore:mapDebugSourceSetPaths UP-TO-DATE
+> Task :feature:auth:processDebugManifest UP-TO-DATE
+> Task :core:common:processDebugJavaRes UP-TO-DATE
+> Task :core:common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:common:compileDebugLibraryResources UP-TO-DATE
+> Task :core:common:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :feature:chat:processDebugManifest UP-TO-DATE
+> Task :core:data:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:settings:processDebugManifest UP-TO-DATE
+> Task :core:common:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:database:compileDebugLibraryResources UP-TO-DATE
+> Task :core:datastore:compileDebugLibraryResources UP-TO-DATE
+> Task :core:designsystem:mapDebugSourceSetPaths UP-TO-DATE
+> Task :feature:auth:mapDebugSourceSetPaths UP-TO-DATE
+> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
+> Task :feature:chat:mapDebugSourceSetPaths UP-TO-DATE
+> Task :core:network:mapDebugSourceSetPaths UP-TO-DATE
+> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:designsystem:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:auth:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:chat:compileDebugLibraryResources UP-TO-DATE
+> Task :core:network:compileDebugLibraryResources UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
 > Task :core:common:mergeDebugJniLibFolders UP-TO-DATE
+> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:designsystem:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:designsystem:processDebugJavaRes UP-TO-DATE
 > Task :core:data:mergeDebugJniLibFolders UP-TO-DATE
-> Task :core:database:mergeDebugJniLibFolders UP-TO-DATE
-> Task :feature:settings:compileDebugLibraryResources UP-TO-DATE
-> Task :core:datastore:mergeDebugJniLibFolders UP-TO-DATE
-> Task :core:designsystem:mergeDebugJniLibFolders UP-TO-DATE
+> Task :core:designsystem:bundleLibRuntimeToDirDebug UP-TO-DATE
 > Task :core:data:mergeDebugNativeLibs NO-SOURCE
+> Task :core:datastore:mergeDebugJniLibFolders UP-TO-DATE
 > Task :core:common:mergeDebugNativeLibs NO-SOURCE
+> Task :core:designsystem:mergeDebugJniLibFolders UP-TO-DATE
+> Task :core:database:mergeDebugJniLibFolders UP-TO-DATE
+> Task :core:network:mergeDebugJniLibFolders UP-TO-DATE
+> Task :feature:auth:mergeDebugJniLibFolders UP-TO-DATE
+> Task :feature:settings:mapDebugSourceSetPaths
 > Task :core:datastore:mergeDebugNativeLibs NO-SOURCE
-> Task :core:designsystem:mergeDebugNativeLibs NO-SOURCE
 > Task :core:database:mergeDebugNativeLibs NO-SOURCE
 > Task :core:data:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :core:network:mergeDebugNativeLibs NO-SOURCE
+> Task :core:designsystem:mergeDebugNativeLibs NO-SOURCE
 > Task :core:common:copyDebugJniLibsProjectOnly UP-TO-DATE
 > Task :core:datastore:copyDebugJniLibsProjectOnly UP-TO-DATE
-> Task :core:designsystem:copyDebugJniLibsProjectOnly UP-TO-DATE
-> Task :core:network:mergeDebugJniLibFolders UP-TO-DATE
-> Task :core:database:copyDebugJniLibsProjectOnly UP-TO-DATE
-> Task :feature:auth:mergeDebugJniLibFolders UP-TO-DATE
-> Task :feature:settings:mergeDebugJniLibFolders UP-TO-DATE
-> Task :feature:chat:mergeDebugJniLibFolders UP-TO-DATE
 > Task :feature:auth:mergeDebugNativeLibs NO-SOURCE
-> Task :feature:chat:mergeDebugNativeLibs NO-SOURCE
-> Task :core:network:mergeDebugNativeLibs NO-SOURCE
-> Task :feature:chat:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :core:designsystem:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :feature:settings:mergeDebugJniLibFolders UP-TO-DATE
+> Task :core:database:copyDebugJniLibsProjectOnly UP-TO-DATE
 > Task :core:network:copyDebugJniLibsProjectOnly UP-TO-DATE
-> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :feature:chat:mergeDebugJniLibFolders UP-TO-DATE
 > Task :app:writeDebugAppMetadata UP-TO-DATE
 > Task :app:validateSigningDebug UP-TO-DATE
 > Task :feature:auth:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
 > Task :feature:settings:mergeDebugNativeLibs NO-SOURCE
+> Task :feature:chat:mergeDebugNativeLibs NO-SOURCE
 > Task :feature:settings:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :feature:chat:copyDebugJniLibsProjectOnly UP-TO-DATE
 > Task :app:processDebugMainManifest UP-TO-DATE
 > Task :app:processDebugManifest UP-TO-DATE
 > Task :app:processDebugManifestForPackage UP-TO-DATE
-> Task :core:designsystem:compileDebugKotlin UP-TO-DATE
-> Task :core:designsystem:compileDebugJavaWithJavac NO-SOURCE
-> Task :core:designsystem:processDebugJavaRes UP-TO-DATE
-> Task :core:designsystem:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:designsystem:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :core:designsystem:bundleLibRuntimeToDirDebug UP-TO-DATE
-> Task :core:datastore:compileDebugKotlin UP-TO-DATE
-> Task :core:datastore:processDebugJavaRes UP-TO-DATE
-> Task :core:datastore:compileDebugJavaWithJavac UP-TO-DATE
 > Task :app:mergeDebugNativeLibs UP-TO-DATE
 > Task :app:stripDebugDebugSymbols UP-TO-DATE
-> Task :app:packageDebugResources
-> Task :core:datastore:transformDebugClassesWithAsm UP-TO-DATE
-> Task :core:datastore:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :core:datastore:bundleLibRuntimeToDirDebug UP-TO-DATE
-> Task :core:datastore:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :app:processDebugNavigationResources
-> Task :app:compileDebugNavigationResources UP-TO-DATE
-> Task :core:network:kspDebugKotlin UP-TO-DATE
-> Task :app:parseDebugLocalResources
-> Task :app:generateDebugRFile UP-TO-DATE
-> Task :core:network:compileDebugKotlin UP-TO-DATE
+> Task :feature:settings:packageDebugResources
+> Task :feature:settings:compileDebugLibraryResources
+> Task :feature:settings:parseDebugLocalResources
+> Task :feature:settings:generateDebugRFile
+> Task :app:mergeDebugResources
+> Task :core:datastore:kspDebugKotlin
+> Task :app:processDebugResources
+> Task :core:datastore:compileDebugKotlin
+> Task :core:datastore:processDebugJavaRes UP-TO-DATE
+> Task :core:datastore:compileDebugJavaWithJavac
+> Task :core:datastore:transformDebugClassesWithAsm
+> Task :core:datastore:bundleLibRuntimeToJarDebug
+> Task :core:datastore:bundleLibCompileToJarDebug
+> Task :core:datastore:bundleLibRuntimeToDirDebug
+> Task :core:network:kspDebugKotlin
+> Task :core:network:compileDebugKotlin
 > Task :core:network:processDebugJavaRes UP-TO-DATE
-> Task :core:network:compileDebugJavaWithJavac UP-TO-DATE
-> Task :core:network:transformDebugClassesWithAsm UP-TO-DATE
-> Task :core:network:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :core:network:bundleLibRuntimeToDirDebug UP-TO-DATE
-> Task :core:network:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :core:data:kspDebugKotlin UP-TO-DATE
-> Task :core:data:compileDebugKotlin UP-TO-DATE
+> Task :core:network:compileDebugJavaWithJavac
+> Task :core:network:transformDebugClassesWithAsm
+> Task :core:network:bundleLibRuntimeToDirDebug
+> Task :core:network:bundleLibRuntimeToJarDebug
+> Task :core:network:bundleLibCompileToJarDebug
+> Task :core:data:kspDebugKotlin
+> Task :core:data:compileDebugKotlin
 > Task :core:data:processDebugJavaRes UP-TO-DATE
-> Task :core:data:compileDebugJavaWithJavac UP-TO-DATE
-> Task :core:data:transformDebugClassesWithAsm UP-TO-DATE
-> Task :core:data:bundleLibRuntimeToDirDebug UP-TO-DATE
-> Task :core:data:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:data:compileDebugJavaWithJavac
+> Task :core:data:transformDebugClassesWithAsm
 > Task :core:data:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :feature:chat:kspDebugKotlin UP-TO-DATE
-> Task :feature:auth:kspDebugKotlin UP-TO-DATE
-> Task :feature:chat:compileDebugKotlin UP-TO-DATE
+> Task :core:data:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:data:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :feature:settings:kspDebugKotlin
+> Task :feature:auth:kspDebugKotlin
+> Task :feature:chat:kspDebugKotlin
+> Task :feature:chat:compileDebugKotlin
 > Task :feature:chat:processDebugJavaRes UP-TO-DATE
-> Task :feature:auth:compileDebugKotlin UP-TO-DATE
-> Task :feature:chat:compileDebugJavaWithJavac UP-TO-DATE
+> Task :feature:auth:compileDebugKotlin
 > Task :feature:auth:processDebugJavaRes UP-TO-DATE
-> Task :feature:auth:compileDebugJavaWithJavac UP-TO-DATE
-> Task :feature:chat:transformDebugClassesWithAsm UP-TO-DATE
-> Task :feature:chat:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :feature:chat:compileDebugJavaWithJavac
+> Task :feature:auth:compileDebugJavaWithJavac
+> Task :feature:auth:transformDebugClassesWithAsm
+> Task :feature:auth:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:auth:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :feature:auth:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :feature:chat:transformDebugClassesWithAsm
 > Task :feature:chat:bundleLibCompileToJarDebug UP-TO-DATE
 > Task :feature:chat:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :feature:auth:transformDebugClassesWithAsm UP-TO-DATE
-> Task :feature:auth:bundleLibCompileToJarDebug UP-TO-DATE
-> Task :feature:auth:bundleLibRuntimeToDirDebug UP-TO-DATE
-> Task :feature:auth:bundleLibRuntimeToJarDebug UP-TO-DATE
-> Task :app:mergeDebugResources
-> Task :feature:settings:kspDebugKotlin
-> Task :app:processDebugResources
+> Task :feature:chat:bundleLibRuntimeToDirDebug UP-TO-DATE
 > Task :feature:settings:compileDebugKotlin
 > Task :feature:settings:processDebugJavaRes UP-TO-DATE
-> Task :feature:settings:compileDebugJavaWithJavac UP-TO-DATE
+> Task :feature:settings:compileDebugJavaWithJavac
 > Task :feature:settings:transformDebugClassesWithAsm
-> Task :feature:settings:bundleLibCompileToJarDebug
 > Task :feature:settings:bundleLibRuntimeToJarDebug
+> Task :feature:settings:bundleLibCompileToJarDebug
 > Task :feature:settings:bundleLibRuntimeToDirDebug
 > Task :app:mergeLibDexDebug
 > Task :app:kspDebugKotlin
-> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin
 > Task :app:processDebugJavaRes UP-TO-DATE
 > Task :app:mergeDebugJavaResource UP-TO-DATE
-> Task :app:compileDebugJavaWithJavac UP-TO-DATE
-> Task :app:hiltCollectClassesDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac
+> Task :app:hiltCollectClassesDebug
 > Task :app:hiltAggregateDepsDebug UP-TO-DATE
-> Task :app:hiltJavaCompileDebug UP-TO-DATE
+> Task :app:hiltJavaCompileDebug
 > Task :app:transformDebugClassesWithAsm
-> Task :app:dexBuilderDebug UP-TO-DATE
-> Task :app:mergeProjectDexDebug UP-TO-DATE
+> Task :app:dexBuilderDebug
+> Task :app:mergeProjectDexDebug
 > Task :app:packageDebug
 > Task :app:assembleDebug
 > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
 
-BUILD SUCCESSFUL in 8s
-229 actionable tasks: 17 executed, 212 up-to-date
+BUILD SUCCESSFUL in 24s
+229 actionable tasks: 51 executed, 178 up-to-date
 Configuration cache entry reused.

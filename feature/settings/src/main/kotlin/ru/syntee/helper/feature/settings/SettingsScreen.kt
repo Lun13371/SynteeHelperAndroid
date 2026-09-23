@@ -1,8 +1,11 @@
 package ru.syntee.helper.feature.settings
 
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,16 +35,21 @@ import androidx.compose.material.icons.outlined.Folder
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -49,6 +57,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,6 +69,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.launch
 import ru.syntee.helper.core.data.auth.AuthState
 import ru.syntee.helper.core.data.model.ChatModel
 import ru.syntee.helper.core.data.model.ModelsState
@@ -86,6 +96,7 @@ fun SettingsScreen(
         SettingsSection.ROOT -> SettingsRoot(viewModel, modifier)
         SettingsSection.ACCOUNT -> AccountSection(viewModel, modifier)
         SettingsSection.AI -> AiSection(viewModel, modifier)
+        SettingsSection.DATA -> DataSection(viewModel, modifier)
         SettingsSection.ABOUT -> AboutSection(viewModel, modifier)
     }
 }
@@ -141,8 +152,8 @@ private fun SettingsRoot(viewModel: SettingsViewModel, modifier: Modifier = Modi
         SettingsSectionItem(
             icon = Icons.Outlined.Folder,
             title = stringResource(R.string.settings_section_data),
-            subtitle = stringResource(R.string.settings_soon),
-            enabled = false,
+            subtitle = stringResource(R.string.settings_section_data_sub),
+            onClick = { viewModel.open(SettingsSection.DATA) },
         )
         SettingsSectionItem(
             icon = Icons.Outlined.Info,
@@ -307,6 +318,54 @@ private fun AccountSection(viewModel: SettingsViewModel, modifier: Modifier = Mo
                     }
                 }
                 Spacer(Modifier.height(16.dp))
+
+                // ── Биллинг ──
+                Text(
+                    text = stringResource(R.string.settings_billing),
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                Spacer(Modifier.height(10.dp))
+                when (val billing = viewModel.billing.collectAsStateWithLifecycle().value) {
+                    is BillingUi.Loading -> Box(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+                        contentAlignment = Alignment.Center,
+                    ) { CircularProgressIndicator() }
+                    is BillingUi.Error -> Column {
+                        Text(
+                            text = billing.message,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.error,
+                        )
+                        TextButton(onClick = viewModel::refreshBilling) {
+                            Text(stringResource(R.string.retry))
+                        }
+                    }
+                    is BillingUi.Loaded -> SynteeCard(modifier = Modifier.fillMaxWidth()) {
+                        BillingRow(
+                            label = stringResource(R.string.billing_balance),
+                            value = "%.2f $".format(billing.balance.balance),
+                        )
+                        if (billing.balance.held > 0.005) {
+                            BillingRow(
+                                label = stringResource(R.string.billing_held),
+                                value = "%.2f $".format(billing.balance.held),
+                            )
+                        }
+                        BillingRow(
+                            label = stringResource(R.string.billing_available),
+                            value = "%.2f $".format(billing.balance.available),
+                            emphasized = true,
+                        )
+                    }
+                }
+                Spacer(Modifier.height(10.dp))
+                SynteePrimaryButton(
+                    text = stringResource(R.string.billing_topup),
+                    onClick = viewModel::openTopUp,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+
+                Spacer(Modifier.height(16.dp))
                 SynteeGhostButton(
                     text = stringResource(R.string.settings_logout),
                     onClick = viewModel::logout,
@@ -343,6 +402,30 @@ private fun AccountSection(viewModel: SettingsViewModel, modifier: Modifier = Mo
                 ) { CircularProgressIndicator() }
             }
         }
+    }
+}
+
+@Composable
+private fun BillingRow(label: String, value: String, emphasized: Boolean = false) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.weight(1f),
+        )
+        Text(
+            text = value,
+            style = if (emphasized) {
+                MaterialTheme.typography.titleMedium
+            } else {
+                MaterialTheme.typography.bodyLarge
+            },
+            fontWeight = if (emphasized) FontWeight.SemiBold else FontWeight.Medium,
+        )
     }
 }
 
@@ -416,6 +499,91 @@ private fun AiSection(viewModel: SettingsViewModel, modifier: Modifier = Modifie
             valueRange = 0f..2f,
             steps = 19,
         )
+
+        Spacer(Modifier.height(24.dp))
+
+        // Max tokens
+        Text(
+            text = stringResource(R.string.settings_max_tokens),
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Text(
+            text = stringResource(R.string.settings_max_tokens_hint),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(Modifier.height(8.dp))
+        var maxTokensText by remember(appSettings.maxTokens) {
+            mutableStateOf(appSettings.maxTokens.toString())
+        }
+        OutlinedTextField(
+            value = maxTokensText,
+            onValueChange = { raw ->
+                maxTokensText = raw.filter { it.isDigit() }.take(6)
+                maxTokensText.toIntOrNull()?.let { viewModel.setMaxTokens(it) }
+            },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            suffix = { Text("ток.") },
+        )
+        Spacer(Modifier.height(8.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            listOf(4096, 8192, 16384, 32768).forEach { preset ->
+                FilterChip(
+                    selected = appSettings.maxTokens == preset,
+                    onClick = {
+                        maxTokensText = preset.toString()
+                        viewModel.setMaxTokens(preset)
+                    },
+                    label = {
+                        Text(
+                            if (preset >= 1024) "${preset / 1024}k" else preset.toString(),
+                        )
+                    },
+                )
+            }
+        }
+
+        Spacer(Modifier.height(24.dp))
+
+        // Reasoning effort
+        Text(
+            text = stringResource(R.string.settings_reasoning),
+            style = MaterialTheme.typography.titleMedium,
+        )
+        val model = defaultModel
+        if (model == null || !model.reasoningSupported || model.reasoningLevels.isEmpty()) {
+            Text(
+                text = stringResource(R.string.settings_reasoning_unsupported),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        } else {
+            Text(
+                text = stringResource(R.string.settings_reasoning_hint, model.displayName),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+            ) {
+                FilterChip(
+                    selected = appSettings.reasoningEffort == "off",
+                    onClick = { viewModel.setReasoningEffort("off") },
+                    label = { Text(stringResource(R.string.settings_reasoning_off)) },
+                )
+                model.reasoningLevels.forEach { level ->
+                    FilterChip(
+                        selected = appSettings.reasoningEffort == level,
+                        onClick = { viewModel.setReasoningEffort(level) },
+                        label = { Text(level) },
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -447,6 +615,114 @@ private fun ModelRadioRow(
             )
         }
     }
+}
+
+// ── Данные ─────────────────────────────────────────────────────────────────
+
+@Composable
+private fun DataSection(viewModel: SettingsViewModel, modifier: Modifier = Modifier) {
+    val stats by viewModel.stats.collectAsStateWithLifecycle()
+    val historyCleared by viewModel.historyCleared.collectAsStateWithLifecycle()
+    val exportResult by viewModel.exportResult.collectAsStateWithLifecycle()
+
+    var confirmClear by remember { mutableStateOf(false) }
+
+    // SAF-диалог «Сохранить как» → JSON-экспорт всех чатов
+    val exportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/json"),
+    ) { uri -> uri?.let(viewModel::exportTo) }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
+    LaunchedEffect(historyCleared) {
+        if (historyCleared) {
+            snackbarHostState.showSnackbar("История удалена")
+            viewModel.consumeHistoryCleared()
+        }
+    }
+    LaunchedEffect(exportResult) {
+        exportResult?.let {
+            snackbarHostState.showSnackbar(it)
+            viewModel.consumeExportResult()
+        }
+    }
+
+    Box(modifier = modifier.fillMaxSize()) {
+        SubScreen(
+            title = stringResource(R.string.settings_section_data),
+            onBack = viewModel::back,
+        ) {
+            // Статистика
+            SynteeCard(modifier = Modifier.fillMaxWidth()) {
+                AboutRow(stringResource(R.string.data_stats_chats), stats.chats.toString())
+                AboutRow(stringResource(R.string.data_stats_messages), stats.messages.toString())
+                AboutRow(
+                    stringResource(R.string.data_stats_tokens),
+                    "${formatTokens(stats.promptTokens)} + ${formatTokens(stats.completionTokens)}",
+                )
+            }
+
+            Spacer(Modifier.height(16.dp))
+
+            // Экспорт
+            SynteePrimaryButton(
+                text = stringResource(R.string.data_export),
+                onClick = { exportLauncher.launch("syntee-chats.json") },
+                modifier = Modifier.fillMaxWidth(),
+                enabled = stats.chats > 0,
+            )
+            Text(
+                text = stringResource(R.string.data_export_hint),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+
+            Spacer(Modifier.height(24.dp))
+
+            // Очистка
+            SynteeGhostButton(
+                text = stringResource(R.string.data_clear_all),
+                onClick = { confirmClear = true },
+                modifier = Modifier.fillMaxWidth(),
+                enabled = stats.chats > 0,
+            )
+        }
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier.align(Alignment.BottomCenter),
+        )
+    }
+
+    if (confirmClear) {
+        AlertDialog(
+            onDismissRequest = { confirmClear = false },
+            title = { Text(stringResource(R.string.data_clear_confirm_title)) },
+            text = { Text(stringResource(R.string.data_clear_confirm_text)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.clearAllChats()
+                    confirmClear = false
+                }) {
+                    Text(
+                        text = stringResource(R.string.data_clear_confirm),
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { confirmClear = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            },
+        )
+    }
+}
+
+private fun formatTokens(value: Long): String = when {
+    value >= 1_000_000 -> "%.1fM".format(value / 1_000_000.0)
+    value >= 1_000 -> "%.1fk".format(value / 1_000.0)
+    else -> value.toString()
 }
 
 // ── О приложении ───────────────────────────────────────────────────────────

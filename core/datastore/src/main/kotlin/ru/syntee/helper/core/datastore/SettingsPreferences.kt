@@ -24,6 +24,8 @@ data class AppSettings(
     val defaultModelId: String? = null,
     val temperature: Double = 0.7,
     val maxTokens: Int = 16384,
+    /** reasoning_effort: off|minimal|low|medium|high (levels из /v1/models). */
+    val reasoningEffort: String = "off",
     /** Прод-режим: все запросы идут на https://syntee.fun вместо dev-гейтвея. */
     val productionMode: Boolean = false,
     val apiBaseUrlOverride: String? = null,
@@ -50,6 +52,7 @@ class SettingsPreferences @Inject constructor(
         val DEFAULT_MODEL = stringPreferencesKey("default_model")
         val TEMPERATURE = doublePreferencesKey("temperature")
         val MAX_TOKENS = stringPreferencesKey("max_tokens_int")
+        val REASONING_EFFORT = stringPreferencesKey("reasoning_effort")
         val PRODUCTION_MODE = booleanPreferencesKey("production_mode")
         val API_URL_OVERRIDE = stringPreferencesKey("api_url_override")
         val WEB_URL_OVERRIDE = stringPreferencesKey("web_url_override")
@@ -64,6 +67,7 @@ class SettingsPreferences @Inject constructor(
             defaultModelId = prefs[Keys.DEFAULT_MODEL],
             temperature = prefs[Keys.TEMPERATURE] ?: 0.7,
             maxTokens = prefs[Keys.MAX_TOKENS]?.toIntOrNull() ?: 16384,
+            reasoningEffort = prefs[Keys.REASONING_EFFORT] ?: "off",
             productionMode = prefs[Keys.PRODUCTION_MODE] ?: false,
             apiBaseUrlOverride = prefs[Keys.API_URL_OVERRIDE]?.takeIf { it.isNotBlank() },
             webBaseUrlOverride = prefs[Keys.WEB_URL_OVERRIDE]?.takeIf { it.isNotBlank() },
@@ -96,6 +100,10 @@ class SettingsPreferences @Inject constructor(
 
     suspend fun setMaxTokens(value: Int) {
         context.settingsDataStore.edit { it[Keys.MAX_TOKENS] = value.toString() }
+    }
+
+    suspend fun setReasoningEffort(value: String) {
+        context.settingsDataStore.edit { it[Keys.REASONING_EFFORT] = value }
     }
 
     suspend fun setUrlOverrides(api: String?, web: String?) {

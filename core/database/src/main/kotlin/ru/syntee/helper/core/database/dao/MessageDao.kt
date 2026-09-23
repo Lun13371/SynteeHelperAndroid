@@ -28,4 +28,19 @@ interface MessageDao {
 
     @Query("DELETE FROM messages WHERE chatId = :chatId")
     suspend fun deleteByChat(chatId: String)
+
+    @Query("SELECT COUNT(*) FROM messages")
+    suspend fun countAll(): Int
+
+    @Query(
+        "SELECT COALESCE(SUM(promptTokens), 0) AS prompt, " +
+            "COALESCE(SUM(completionTokens), 0) AS completion FROM messages",
+    )
+    suspend fun tokenTotals(): TokenTotals
+
+    @Query("SELECT * FROM messages WHERE chatId = :chatId ORDER BY createdAt ASC, id ASC")
+    suspend fun getByChat(chatId: String): List<MessageEntity>
 }
+
+/** Агрегат токенов по всем сообщениям. */
+data class TokenTotals(val prompt: Long, val completion: Long)

@@ -75,6 +75,14 @@ data class StatusBucketsDto(
     val buckets: List<BucketDto> = emptyList(),
 )
 
+// ── Биллинг ───────────────────────────────────────────────────────────────
+
+@Serializable
+data class BalanceDto(
+    val balance: Double = 0.0,
+    val held: Double = 0.0,
+)
+
 @Serializable
 data class BucketDto(
     val timestamp: Long? = null,

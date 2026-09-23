@@ -27,6 +27,30 @@
     <string name="settings_temp_precise">точные ответы</string>
     <string name="settings_temp_balanced">сбалансированно</string>
     <string name="settings_temp_creative">креативно</string>
+    <string name="settings_max_tokens">Лимит ответа (max_tokens)</string>
+    <string name="settings_max_tokens_hint">Максимальная длина ответа модели в токенах</string>
+    <string name="settings_reasoning">Глубина размышлений</string>
+    <string name="settings_reasoning_off">Выкл</string>
+    <string name="settings_reasoning_hint">Уровень reasoning_effort для модели «%1$s»</string>
+    <string name="settings_reasoning_unsupported">Выбранная модель не поддерживает размышления</string>
+    <string name="retry">Повторить</string>
+
+    <string name="settings_billing">Биллинг</string>
+    <string name="billing_balance">Баланс</string>
+    <string name="billing_held">Заморожено</string>
+    <string name="billing_available">Доступно</string>
+    <string name="billing_topup">Пополнить баланс</string>
+
+    <string name="data_stats_chats">Чатов</string>
+    <string name="data_stats_messages">Сообщений</string>
+    <string name="data_stats_tokens">Токенов (запрос + ответ)</string>
+    <string name="data_export">Экспортировать историю</string>
+    <string name="data_export_hint">Все чаты и сообщения в JSON-файл</string>
+    <string name="data_clear_all">Удалить все чаты</string>
+    <string name="data_clear_confirm_title">Удалить всю историю?</string>
+    <string name="data_clear_confirm_text">Все чаты и сообщения будут удалены безвозвратно. Действие нельзя отменить.</string>
+    <string name="data_clear_confirm">Удалить всё</string>
+    <string name="cancel">Отмена</string>
 
     <string name="about_version">Версия</string>
     <string name="about_api_url">Gateway API</string>

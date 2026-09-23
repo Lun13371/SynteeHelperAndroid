@@ -4,6 +4,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+import ru.syntee.helper.core.network.dto.BalanceDto
 import ru.syntee.helper.core.network.dto.ExchangeRequest
 import ru.syntee.helper.core.network.dto.GatewayUserDto
 import ru.syntee.helper.core.network.dto.ModelsResponseDto
@@ -36,6 +37,12 @@ interface GatewayApi {
 
     @GET("v1/model-status/buckets")
     suspend fun getStatusBuckets(@Query("hours") hours: Int = 12): List<StatusBucketsDto>
+
+    // ── Биллинг (Bearer) ──
+
+    /** Баланс и замороженные средства (hold на время стрима). */
+    @GET("api/user/billing/balance")
+    suspend fun getBalance(): BalanceDto
 }
 
 /**

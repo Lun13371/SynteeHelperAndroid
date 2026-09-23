@@ -27,6 +27,8 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.coroutines.android)
+    // okhttp3.Call — реестр живых стримов для стоп-генерации
+    implementation(libs.okhttp)
     // SettingsPreferences протекает типами DataStore (edit возвращает Preferences)
     implementation(libs.datastore.preferences)
 

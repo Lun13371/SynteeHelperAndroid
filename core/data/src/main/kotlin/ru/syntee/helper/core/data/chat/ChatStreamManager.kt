@@ -15,6 +15,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.isActive
+import okhttp3.Call
 import ru.syntee.helper.core.data.model.ChatMessage
 import ru.syntee.helper.core.data.model.ChatModel
 import ru.syntee.helper.core.data.model.StreamingState
@@ -54,6 +57,9 @@ class ChatStreamManager @Inject constructor(
 
     private val jobs = mutableMapOf<String, Job>()
 
+    /** Живые HTTP-вызовы по chatId — для немедленного разрыва сокета при отмене. */
+    private val calls = java.util.concurrent.ConcurrentHashMap<String, Call>()
+
     private val _states = MutableStateFlow<Map<String, StreamingState>>(emptyMap())
     val states: StateFlow<Map<String, StreamingState>> = _states.asStateFlow()
 
@@ -76,9 +82,18 @@ class ChatStreamManager @Inject constructor(
         }
     }
 
-    /** Стоп-генерация: недописанный ответ сохраняется с finishReason = cancelled. */
+    /**
+     * Стоп-генерация: недописанный ответ сохраняется с finishReason = cancelled.
+     *
+     * ⚠️ Порядок важен: сначала отменяем корутину-коллектор (она висит на
+     * cancellable-получении из канала → мгновенно финализируется), и только
+     * потом рвём HTTP-вызов. Заблокированный readUtf8Line() НЕ реагирует на
+     * отмену корутины — сокет закрывается только прямым call.cancel(),
+     * иначе продюсер висит до конца стрима и блокирует новые генерации.
+     */
     fun cancel(chatId: String) {
         synchronized(jobs) { jobs[chatId] }?.cancel()
+        calls.remove(chatId)?.cancel()
     }
 
     val isStreaming: (String) -> Boolean = { chatId -> synchronized(jobs) { jobs.containsKey(chatId) } }
@@ -111,9 +126,11 @@ class ChatStreamManager @Inject constructor(
                 messages = history.map { ChatMessagePayload(role = it.role.name.lowercase(), content = it.content) },
                 temperature = s.temperature,
                 max_tokens = s.maxTokens.toLong(),
+                reasoning_effort = s.reasoningEffort
+                    .takeIf { it != "off" && model.reasoningSupported },
             )
 
-            streamClient.stream(request).collect { event ->
+            streamClient.stream(request, onCall = { call -> calls[chatId] = call }).collect { event ->
                 when (event) {
                     is StreamEvent.Delta -> {
                         if (firstTokenAt.get() == null) firstTokenAt.set(System.currentTimeMillis())
@@ -153,25 +170,37 @@ class ChatStreamManager @Inject constructor(
             finishReason = "error"
             error = e.message
         } catch (e: Throwable) {
-            finishReason = "error"
-            error = e.message ?: "Не удалось получить ответ"
+            // Гонка отмены: call.cancel() рвёт сокет → IOException из blocked read
+            // может обогнать CancellationException. Если корутина уже отменена —
+            // это отмена, а не ошибка.
+            if (!currentCoroutineContext().isActive) {
+                finishReason = "cancelled"
+            } else {
+                finishReason = "error"
+                error = e.message ?: "Не удалось получить ответ"
+            }
         } finally {
+            calls.remove(chatId)
             // Финализация выполняется даже при отмене корутины.
+            // runCatching: даже если финализация упадёт (например, чат удалён),
+            // состояние стрима обязано быть очищено — иначе UI зависнет.
             withContext(NonCancellable) {
-                chatRepository.finalizeAssistantMessage(
-                    chatId = chatId,
-                    messageId = messageId,
-                    content = content.toString(),
-                    thinking = thinking.toString(),
-                    model = model.id,
-                    modelProvider = model.ownedBy,
-                    startedAt = startedAt,
-                    firstTokenAt = firstTokenAt.get(),
-                    durationMs = System.currentTimeMillis() - startedAt,
-                    promptTokens = promptTokens,
-                    completionTokens = completionTokens,
-                    finishReason = finishReason,
-                )
+                runCatching {
+                    chatRepository.finalizeAssistantMessage(
+                        chatId = chatId,
+                        messageId = messageId,
+                        content = content.toString(),
+                        thinking = thinking.toString(),
+                        model = model.id,
+                        modelProvider = model.ownedBy,
+                        startedAt = startedAt,
+                        firstTokenAt = firstTokenAt.get(),
+                        durationMs = System.currentTimeMillis() - startedAt,
+                        promptTokens = promptTokens,
+                        completionTokens = completionTokens,
+                        finishReason = finishReason,
+                    )
+                }
             }
             // Короткая задержка состояния ошибки, чтобы UI успел показать «Повторить»
             publish(chatId) {

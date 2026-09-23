@@ -35,9 +35,13 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons.extended)
     implementation(libs.activity.compose)
+    implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.coroutines.android)
+
+    // Custom Tabs (топап биллинга в вебе)
+    implementation(libs.browser)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

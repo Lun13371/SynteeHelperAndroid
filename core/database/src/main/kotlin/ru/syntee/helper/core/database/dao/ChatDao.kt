@@ -44,4 +44,13 @@ interface ChatDao {
     /** Чистка пустых чатов (без сообщений) при старте приложения. */
     @Query("DELETE FROM chats WHERE id NOT IN (SELECT DISTINCT chatId FROM messages)")
     suspend fun deleteEmpty()
+
+    @Query("SELECT COUNT(*) FROM chats")
+    suspend fun countChats(): Int
+
+    @Query("DELETE FROM chats")
+    suspend fun deleteAll()
+
+    @Query("SELECT * FROM chats ORDER BY createdAt ASC")
+    suspend fun getAll(): List<ChatEntity>
 }

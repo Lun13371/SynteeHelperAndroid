@@ -44,7 +44,16 @@ class ChatStreamClient @Inject constructor(
         .callTimeout(0, TimeUnit.MILLISECONDS)
         .build()
 
-    fun stream(request: ChatCompletionRequestDto): Flow<StreamEvent> = flow {
+    /**
+     * @param onCall вызывается при создании OkHttp-вызова (до execute) —
+     *   менеджер стримов регистрирует его для НЕМЕДЛЕННОЙ отмены
+     *   (стоп-генерация рвёт сокет напрямую: blocked read не реагирует
+     *   на отмену корутины).
+     */
+    fun stream(
+        request: ChatCompletionRequestDto,
+        onCall: (okhttp3.Call) -> Unit = {},
+    ): Flow<StreamEvent> = flow {
         val payload = json.encodeToString(ChatCompletionRequestDto.serializer(), request)
             .toRequestBody("application/json; charset=utf-8".toMediaType())
 
@@ -58,7 +67,9 @@ class ChatStreamClient @Inject constructor(
             .build()
 
         val call = sseClient.newCall(httpRequest)
-        // Отмена flow → отмена вызова: blocked read прервётся IOException.
+        onCall(call)
+        // Страховка: если продюсер-корутина завершится по любой причине —
+        // вызов закрывается (на завершённом вызове cancel() — no-op).
         val cancelHandle = currentCoroutineContext()[Job]?.invokeOnCompletion { call.cancel() }
         try {
             val response = call.execute()

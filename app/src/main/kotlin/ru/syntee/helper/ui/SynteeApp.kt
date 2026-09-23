@@ -38,9 +38,6 @@ import ru.syntee.helper.navigation.ChatRoute
 import ru.syntee.helper.navigation.LoginRoute
 import ru.syntee.helper.navigation.SettingsRoute
 
-/** Идентификатор «нового чата» до появления Room-идентификаторов (стадия 03). */
-private const val NEW_CHAT_ID = "new"
-
 @Composable
 fun SynteeApp(
     appViewModel: AppViewModel = hiltViewModel(),
@@ -111,7 +108,6 @@ private fun MainScaffold(isLoggedIn: Boolean) {
             composable<ChatListRoute> {
                 ChatListScreen(
                     onChatClick = { chatId -> navController.navigate(ChatRoute(chatId)) },
-                    onNewChat = { navController.navigate(ChatRoute(NEW_CHAT_ID)) },
                 )
             }
             composable<ChatRoute> { entry ->

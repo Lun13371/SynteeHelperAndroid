@@ -1,0 +1,7 @@
+<resources>
+    <string name="login_title">Syntee Helper</string>
+    <string name="login_subtitle">Войдите через Syntee-Gateway, чтобы получить доступ к моделям, балансу и профилю</string>
+    <string name="login_button">Войти через Syntee</string>
+    <string name="login_guest">Продолжить как гость</string>
+    <string name="login_hint">Гостевой режим: свои провайдеры и локальные модели, без моделей gateway и биллинга</string>
+</resources>

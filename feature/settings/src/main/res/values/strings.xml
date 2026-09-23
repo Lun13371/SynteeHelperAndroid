@@ -1,0 +1,15 @@
+<resources>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_section_account">Аккаунт</string>
+    <string name="settings_section_account_sub">Профиль, пароль, выход</string>
+    <string name="settings_section_appearance">Внешний вид</string>
+    <string name="settings_section_appearance_sub">Тема, акцент, пузыри, шрифт</string>
+    <string name="settings_section_ai">ИИ и модели</string>
+    <string name="settings_section_ai_sub">Модель по умолчанию, параметры, статусы</string>
+    <string name="settings_section_providers">Провайдеры</string>
+    <string name="settings_section_providers_sub">Свои API-ключи для гостевого режима</string>
+    <string name="settings_section_data">Данные</string>
+    <string name="settings_section_data_sub">Экспорт и очистка истории</string>
+    <string name="settings_section_about">О приложении</string>
+    <string name="settings_section_about_sub">Версия, gateway, диагностика</string>
+</resources>

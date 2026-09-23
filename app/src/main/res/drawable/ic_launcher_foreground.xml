@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Фирменная «S» Syntee: светлый акцент десктопа #E8E8EC на тёмном фоне. -->
+    <path
+        android:pathData="M64,41 C64,36 59,33.5 54,33.5 C46.5,33.5 41.5,36.5 41.5,41.5 C41.5,46.5 46.5,49 54,50.5 C61.5,52 66.5,54.5 66.5,60 C66.5,65.5 61,69.5 54,69.5 C48.5,69.5 44,67 43.5,63"
+        android:strokeColor="#E8E8EC"
+        android:strokeWidth="8.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

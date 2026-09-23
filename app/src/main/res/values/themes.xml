@@ -1,0 +1,6 @@
+<resources>
+    <!-- Базовая тема: только NoActionBar. Всю отрисовку делает Compose (SynteeTheme). -->
+    <style name="Theme.SynteeHelper" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/syntee_window_bg</item>
+    </style>
+</resources>

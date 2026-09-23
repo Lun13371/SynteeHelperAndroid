@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Syntee Helper</string>
+    <string name="tab_chats">Чаты</string>
+    <string name="tab_settings">Настройки</string>
+</resources>

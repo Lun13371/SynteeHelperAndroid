@@ -1,4 +1,5 @@
 <resources>
+    <string name="back">Назад</string>
     <string name="settings_title">Настройки</string>
     <string name="settings_section_account">Аккаунт</string>
     <string name="settings_section_account_sub">Профиль, пароль, выход</string>
@@ -12,4 +13,25 @@
     <string name="settings_section_data_sub">Экспорт и очистка истории</string>
     <string name="settings_section_about">О приложении</string>
     <string name="settings_section_about_sub">Версия, gateway, диагностика</string>
+
+    <string name="settings_soon">Скоро</string>
+    <string name="settings_guest_mode">Гостевой режим</string>
+    <string name="settings_guest_title">Вы в гостевом режиме</string>
+    <string name="settings_guest_hint">Модели gateway и биллинг недоступны. Настройте своих провайдеров или войдите в аккаунт.</string>
+    <string name="settings_login">Войти в аккаунт</string>
+    <string name="settings_logout">Выйти из аккаунта</string>
+
+    <string name="settings_default_model">Модель по умолчанию</string>
+    <string name="settings_temperature">Температура</string>
+    <string name="settings_temperature_value">%1$.1f — %2$s</string>
+    <string name="settings_temp_precise">точные ответы</string>
+    <string name="settings_temp_balanced">сбалансированно</string>
+    <string name="settings_temp_creative">креативно</string>
+
+    <string name="about_version">Версия</string>
+    <string name="about_api_url">Gateway API</string>
+    <string name="about_web_url">Gateway Web</string>
+    <string name="about_dev_urls">Dev-адреса gateway</string>
+    <string name="about_dev_urls_hint">Для реального устройства укажите LAN IP ПК с запущенным gateway (например http://192.168.1.50:8000)</string>
+    <string name="about_apply_urls">Применить</string>
 </resources>

@@ -1,5 +1,6 @@
 package ru.syntee.helper.feature.chat
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,11 +30,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.syntee.helper.core.designsystem.components.EmptyState
 
 /**
@@ -48,21 +49,42 @@ fun ChatScreen(
     modifier: Modifier = Modifier,
     viewModel: ChatViewModel = hiltViewModel(),
 ) {
+    val selectedModel by viewModel.selectedModel.collectAsStateWithLifecycle()
+    val modelsState by viewModel.modelsState.collectAsStateWithLifecycle()
+    val pickerVisible by viewModel.pickerVisible.collectAsStateWithLifecycle()
+
+    if (pickerVisible) {
+        ModelPickerSheet(
+            state = modelsState,
+            recentIds = emptyList(), // стадия 03: недавние из настроек
+            selectedModelId = selectedModel?.id,
+            onSelect = viewModel::selectModel,
+            onDismiss = viewModel::closePicker,
+        )
+    }
+
     Scaffold(
         modifier = modifier.fillMaxSize(),
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = {
-                    Column {
+                    Column(
+                        modifier = Modifier.clickable { viewModel.openPicker() },
+                    ) {
                         Text(
                             text = stringResource(R.string.chat_new_title),
                             style = MaterialTheme.typography.titleMedium,
                         )
                         Text(
-                            text = stringResource(R.string.chat_model_none),
+                            text = selectedModel?.displayName
+                                ?: stringResource(R.string.chat_model_none),
                             style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            color = if (selectedModel != null) {
+                                MaterialTheme.colorScheme.primary
+                            } else {
+                                MaterialTheme.colorScheme.onSurfaceVariant
+                            },
                         )
                     }
                 },
@@ -109,7 +131,7 @@ private fun ChatInputBar() {
                 .navigationBarsPadding()
                 .imePadding()
                 .padding(horizontal = 12.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.Bottom,
+            verticalAlignment = androidx.compose.ui.Alignment.Bottom,
         ) {
             OutlinedTextField(
                 value = text,

@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
-// Стадия 02: DataStore — настройки, токены (Keystore AES-GCM), провайдеры гостя.
 android {
     namespace = "ru.syntee.helper.core.datastore"
     compileSdk {
@@ -15,4 +17,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+}
+
+dependencies {
+    implementation(project(":core:common"))
+
+    implementation(libs.datastore.preferences)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coroutines.android)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }

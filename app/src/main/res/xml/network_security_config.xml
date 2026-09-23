@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Debug: разрешаем cleartext — dev-гейтвей на ПК (10.0.2.2 в эмуляторе,
+     LAN IP вида 192.168.x.x при запуске на реальном устройстве).
+     Release-сборка использует отдельный конфиг (src/release/res/xml) — только HTTPS. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

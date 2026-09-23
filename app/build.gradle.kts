@@ -54,6 +54,9 @@ dependencies {
     // Модули приложения
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:network"))
+    implementation(project(":core:data"))
+    implementation(project(":core:datastore"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:chat"))
     implementation(project(":feature:settings"))
@@ -74,6 +77,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.viewmodel.compose)
+
+    // Корутины
+    implementation(libs.coroutines.android)
 
     // Tooling
     debugImplementation(libs.compose.ui.tooling)
